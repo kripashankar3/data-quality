@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "2.4.0"
+    id("java")
 }
 
 group = "dq.engine"
@@ -10,11 +10,9 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
-}
-
-kotlin {
-    jvmToolchain(26)
+    testImplementation(platform("org.junit:junit-bom:6.0.0"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 tasks.test {
