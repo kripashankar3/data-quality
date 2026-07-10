@@ -3,7 +3,7 @@ package dq.entities.operation.predicate;
 import dq.entities.operation.Operand;
 import org.apache.spark.sql.Column;
 
-public class StartsWithOperation extends BinaryOperation {
+public class StartsWithOperation extends PredicateOperation {
 
     public StartsWithOperation(Operand left, Operand right) {
         super(left, right);

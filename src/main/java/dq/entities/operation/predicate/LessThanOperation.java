@@ -3,7 +3,7 @@ package dq.entities.operation.predicate;
 import dq.entities.operation.Operand;
 import org.apache.spark.sql.Column;
 
-public class LessThanOperation extends BinaryOperation {
+public class LessThanOperation extends PredicateOperation {
 
     public LessThanOperation(Operand left, Operand right) {
         super(left, right);

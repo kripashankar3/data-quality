@@ -7,4 +7,6 @@ import org.apache.spark.sql.Row;
 public interface GroupBySpec {
 
     RelationalGroupedDataset apply(Dataset<Row> dataset);
+
+    boolean isEmpty();
 }

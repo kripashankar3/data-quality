@@ -17,6 +17,11 @@ public class RollUpGroupBySpec implements GroupBySpec {
     }
 
     @Override
+    public boolean isEmpty() {
+        return columns.isEmpty();
+    }
+
+    @Override
     public RelationalGroupedDataset apply(Dataset<Row> dataset) {
 
         Column[] groupColumns = columns.stream()

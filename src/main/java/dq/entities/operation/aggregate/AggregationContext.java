@@ -25,12 +25,13 @@ public class AggregationContext {
     public Dataset<Row> execute(Dataset<Row> dataset) {
         Column[] aggregates = aggregateColumns();
 
+        if (groupBySpec.isEmpty()){
+            return dataset.agg(first(aggregates), remaining(aggregates));
+        }
+
         return groupBySpec
                 .apply(dataset)
-                .agg(
-                        first(aggregates),
-                        remaining(aggregates)
-                );
+                .agg(first(aggregates), remaining(aggregates));
     }
 
 

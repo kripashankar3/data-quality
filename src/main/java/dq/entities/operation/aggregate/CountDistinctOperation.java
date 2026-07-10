@@ -16,8 +16,10 @@ public class CountDistinctOperation extends BaseAggregateOperation {
         return count_distinct(operand.toColumn()).alias(alias);
     }
 
+
+
     @Override
     public String expression() {
-        return format("DISTINCT");
+        return format("COUNT");
     }
 }

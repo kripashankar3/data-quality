@@ -24,4 +24,9 @@ public class NormalGroupBySpec implements GroupBySpec {
                 .toArray(Column[]::new);
         return SparkGroupingUtils.groupBy(dataset, groupColumns);
     }
+
+    @Override
+    public boolean isEmpty() {
+        return columns.isEmpty();
+    }
 }
