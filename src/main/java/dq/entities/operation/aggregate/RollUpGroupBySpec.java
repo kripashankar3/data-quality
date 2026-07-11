@@ -1,0 +1,32 @@
+package dq.entities.operation.aggregate;
+
+import dq.utils.SparkGroupingUtils;
+import org.apache.spark.sql.Column;
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.RelationalGroupedDataset;
+import org.apache.spark.sql.Row;
+
+import java.util.List;
+
+public class RollUpGroupBySpec implements GroupBySpec {
+
+    private final List<String> columns;
+
+    public RollUpGroupBySpec(List<String> columns) {
+        this.columns = columns;
+    }
+
+    @Override
+    public RelationalGroupedDataset apply(Dataset<Row> dataset) {
+
+        Column[] groupColumns = columns.stream()
+                .map(org.apache.spark.sql.functions::col)
+                .toArray(Column[]::new);
+        return SparkGroupingUtils.rollup(dataset, groupColumns);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return columns.isEmpty();
+    }
+}
