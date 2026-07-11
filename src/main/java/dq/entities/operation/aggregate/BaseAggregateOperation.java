@@ -1,7 +1,7 @@
 package dq.entities.operation.aggregate;
 
-import dq.entities.operation.Operand;
-import dq.entities.operation.predicate.PredicateOperation;
+import dq.entities.operation.Operation;
+import dq.entities.operation.operand.Operand;
 import org.apache.spark.sql.Column;
 
 import static org.apache.spark.sql.functions.lit;
@@ -11,20 +11,20 @@ public abstract class BaseAggregateOperation implements AggregateOperation {
 
     protected final Operand operand;
     protected final String alias;
-    protected final PredicateOperation predicate;
+    protected final Operation predicate;
 
-    protected BaseAggregateOperation(Operand operand, String alias, PredicateOperation predicate) {
+    protected BaseAggregateOperation(Operand operand, String alias, Operation predicate) {
         this.operand = operand;
         this.alias = alias;
         this.predicate = predicate;
     }
 
-    protected Column column() {
+    protected Column toColumn() {
         Column operandColumn = operand.toColumn();
         return when(
                 predicate == null ? lit(true) : predicate.evaluate(),
                 operandColumn
-        ).otherwise( null);
+        ).otherwise(null);
     }
 
 

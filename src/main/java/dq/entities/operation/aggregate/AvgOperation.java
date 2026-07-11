@@ -1,7 +1,7 @@
 package dq.entities.operation.aggregate;
 
-import dq.entities.operation.Operand;
-import dq.entities.operation.predicate.PredicateOperation;
+import dq.entities.operation.Operation;
+import dq.entities.operation.operand.Operand;
 import org.apache.spark.sql.Column;
 
 import static org.apache.spark.sql.functions.avg;
@@ -12,13 +12,13 @@ public class AvgOperation extends BaseAggregateOperation {
         super(operand, alias, null);
     }
 
-    public AvgOperation(Operand operand, String alias, PredicateOperation predicate) {
+    public AvgOperation(Operand operand, String alias, Operation predicate) {
         super(operand, alias, predicate);
     }
 
     @Override
     public Column evaluate() {
-        return avg(column()).alias(alias);
+        return avg(toColumn()).alias(alias);
     }
 
     @Override

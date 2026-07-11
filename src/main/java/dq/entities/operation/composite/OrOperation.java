@@ -28,7 +28,6 @@ public class OrOperation implements Operation {
     }
 
 
-
     @Override
     public String expression() {
         if (operations == null || operations.isEmpty()) {

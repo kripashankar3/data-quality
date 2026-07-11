@@ -1,4 +1,4 @@
-package dq.entities.operation;
+package dq.entities.operation.operand;
 
 import org.apache.spark.sql.Column;
 

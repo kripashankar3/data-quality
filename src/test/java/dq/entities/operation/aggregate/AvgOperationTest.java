@@ -1,7 +1,7 @@
 package dq.entities.operation.aggregate;
 
-import dq.entities.operation.ColumnOperand;
 import dq.entities.operation.OperationTest;
+import dq.entities.operation.operand.ColumnOperand;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.junit.jupiter.api.DisplayName;

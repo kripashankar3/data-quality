@@ -1,6 +1,6 @@
 package dq.entities.operation.predicate;
 
-import dq.entities.operation.Operand;
+import dq.entities.operation.operand.Operand;
 import org.apache.spark.sql.Column;
 
 public class EqualOperation extends PredicateOperation {

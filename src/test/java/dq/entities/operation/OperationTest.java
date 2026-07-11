@@ -2,6 +2,8 @@ package dq.entities.operation;
 
 import dq.entities.operation.composite.AndOperation;
 import dq.entities.operation.composite.OrOperation;
+import dq.entities.operation.operand.ColumnOperand;
+import dq.entities.operation.operand.LiteralOperand;
 import dq.entities.operation.predicate.ContainsOperation;
 import dq.entities.operation.predicate.EqualOperation;
 import dq.entities.operation.predicate.GreaterThanOperation;
@@ -104,7 +106,7 @@ public abstract class OperationTest {
                                 )
                         )
                 );
-        System.out.println("Expression: "+ employeeEligibilityRule.expression());
+        System.out.println("Expression: " + employeeEligibilityRule.expression());
         Dataset<Row> eligibleEmployees =
                 employeeDataset.filter(
                         employeeEligibilityRule.evaluate()

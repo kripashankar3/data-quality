@@ -17,16 +17,16 @@ public class RollUpGroupBySpec implements GroupBySpec {
     }
 
     @Override
-    public boolean isEmpty() {
-        return columns.isEmpty();
-    }
-
-    @Override
     public RelationalGroupedDataset apply(Dataset<Row> dataset) {
 
         Column[] groupColumns = columns.stream()
                 .map(org.apache.spark.sql.functions::col)
                 .toArray(Column[]::new);
         return SparkGroupingUtils.rollup(dataset, groupColumns);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return columns.isEmpty();
     }
 }

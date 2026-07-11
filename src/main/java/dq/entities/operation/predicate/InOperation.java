@@ -1,7 +1,7 @@
 package dq.entities.operation.predicate;
 
-import dq.entities.operation.Operand;
 import dq.entities.operation.Operation;
+import dq.entities.operation.operand.Operand;
 import org.apache.spark.sql.Column;
 
 import java.util.Arrays;
