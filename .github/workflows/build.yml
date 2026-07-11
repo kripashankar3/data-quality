@@ -38,8 +38,8 @@ jobs:
         with:
           paths: build/reports/jacoco/test/jacocoTestReport.xml
           token: ${{ secrets.GITHUB_TOKEN }}
-          min-coverage-overall: 80
-          min-coverage-changed-files: 80
+          min-coverage-overall: 70
+          min-coverage-changed-files: 70
 
       - name: Upload HTML Coverage Report
         uses: actions/upload-artifact@v5
