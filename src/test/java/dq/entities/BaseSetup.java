@@ -1,31 +1,30 @@
-package dq.entities.operation;
+package dq.entities;
 
-import dq.entities.operation.composite.AndOperation;
-import dq.entities.operation.composite.OrOperation;
-import dq.entities.operation.operand.ColumnOperand;
-import dq.entities.operation.operand.LiteralOperand;
-import dq.entities.operation.predicate.ContainsOperation;
-import dq.entities.operation.predicate.EqualOperation;
-import dq.entities.operation.predicate.GreaterThanOperation;
-import dq.entities.operation.predicate.InOperation;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import dq.entities.operation.Operation;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.RowFactory;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.types.DataTypes;
 import org.apache.spark.sql.types.StructType;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.TestInstance;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public abstract class OperationTest {
+public abstract class BaseSetup {
 
     protected SparkSession spark;
     protected Dataset<Row> employeeDataset;
+    protected String ruleJsonPath = "src/test/resources/rule.json";
+    protected static final ObjectMapper OBJECT_MAPPER = JsonMapper.builder()
+            .findAndAddModules()
+            .build();
 
     @BeforeAll
     void setUp() {
@@ -74,44 +73,5 @@ public abstract class OperationTest {
         if (spark != null) {
             spark.stop();
         }
-    }
-
-    @Test
-    @DisplayName("Employee eligibility test")
-    void employee_eligibility_test() {
-        Operation employeeEligibilityRule =
-                new AndOperation(
-
-                        new GreaterThanOperation(
-                                new ColumnOperand("age"),
-                                new LiteralOperand(30)
-                        ),
-
-                        new InOperation(
-                                new ColumnOperand("country"),
-                                "US",
-                                "UK"
-                        ),
-
-                        new OrOperation(
-
-                                new ContainsOperation(
-                                        new ColumnOperand("email"),
-                                        new LiteralOperand("@gmail.com")
-                                ),
-
-                                new EqualOperation(
-                                        new ColumnOperand("active"),
-                                        new LiteralOperand(false)
-                                )
-                        )
-                );
-        System.out.println("Expression: " + employeeEligibilityRule.expression());
-        Dataset<Row> eligibleEmployees =
-                employeeDataset.filter(
-                        employeeEligibilityRule.evaluate()
-                );
-        eligibleEmployees.show();
-        assertEquals(2, eligibleEmployees.count());
     }
 }

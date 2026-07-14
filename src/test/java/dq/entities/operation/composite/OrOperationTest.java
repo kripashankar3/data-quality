@@ -1,6 +1,6 @@
 package dq.entities.operation.composite;
 
-import dq.entities.operation.OperationTest;
+import dq.entities.BaseSetup;
 import dq.entities.operation.aggregate.AggregationContext;
 import dq.entities.operation.aggregate.NormalGroupBySpec;
 import dq.entities.operation.aggregate.SumOperation;
@@ -18,7 +18,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class OrOperationTest extends OperationTest {
+class OrOperationTest extends BaseSetup {
     @Test
     @DisplayName("Should get salary sum by employee's either residing in US or IN and younger than 30yrs")
     void getSalaryForGenZAndUSEmployee() {

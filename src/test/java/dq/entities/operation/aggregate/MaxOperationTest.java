@@ -1,6 +1,6 @@
 package dq.entities.operation.aggregate;
 
-import dq.entities.operation.OperationTest;
+import dq.entities.BaseSetup;
 import dq.entities.operation.operand.ColumnOperand;
 import dq.entities.operation.operand.LiteralOperand;
 import dq.entities.operation.predicate.EqualOperation;
@@ -14,7 +14,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-class MaxOperationTest extends OperationTest {
+class MaxOperationTest extends BaseSetup {
 
     @Test
     @DisplayName("Should get max salary out of all employee")

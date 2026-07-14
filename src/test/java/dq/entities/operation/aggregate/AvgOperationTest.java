@@ -1,6 +1,6 @@
 package dq.entities.operation.aggregate;
 
-import dq.entities.operation.OperationTest;
+import dq.entities.BaseSetup;
 import dq.entities.operation.operand.ColumnOperand;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class AvgOperationTest extends OperationTest {
+class AvgOperationTest extends BaseSetup {
 
     @Test
     @DisplayName("AvgOperation generates correct Spark SQL expression")

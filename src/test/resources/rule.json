@@ -1,0 +1,67 @@
+{
+  "operands": {
+    "salary": {
+      "type": "column",
+      "name": "salary"
+    },
+    "department": {
+      "type": "column",
+      "name": "department"
+    },
+    "active": {
+      "type": "column",
+      "name": "active"
+    },
+    "country": {
+      "type": "column",
+      "name": "country"
+    },
+    "active_literal": {
+      "type": "literal",
+      "value": true
+    },
+    "india_literal": {
+      "type": "literal",
+      "value": "IN"
+    },
+    "usa_literal": {
+      "type": "literal",
+      "value": "US"
+    }
+  },
+  "groupBy": [
+    "department"
+  ],
+  "operation": {
+    "sum": {
+      "operand": "salary",
+      "alias": "total_salary",
+      "where": {
+        "and": [
+          {
+            "equal": {
+              "left": "active",
+              "right": "active_literal"
+            }
+          },
+          {
+            "or": [
+              {
+                "equal": {
+                  "left": "country",
+                  "right": "india_literal"
+                }
+              },
+              {
+                "equal": {
+                  "left": "country",
+                  "right": "usa_literal"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

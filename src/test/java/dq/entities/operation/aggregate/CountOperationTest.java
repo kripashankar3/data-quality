@@ -1,6 +1,6 @@
 package dq.entities.operation.aggregate;
 
-import dq.entities.operation.OperationTest;
+import dq.entities.BaseSetup;
 import dq.entities.operation.operand.ColumnOperand;
 import dq.entities.operation.operand.LiteralOperand;
 import dq.entities.operation.predicate.GreaterThanOperation;
@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CountOperationTest extends OperationTest {
+class CountOperationTest extends BaseSetup {
 
     @Test
     @DisplayName("should get employee count in employee dataset")

@@ -1,6 +1,6 @@
 package dq.entities.operation.aggregate;
 
-import dq.entities.operation.OperationTest;
+import dq.entities.BaseSetup;
 import dq.entities.operation.operand.ColumnOperand;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class AggregationContextTest extends OperationTest {
+class AggregationContextTest extends BaseSetup {
 
     @Test
     @DisplayName("should aggregate over the whole dataset when the group by spec is empty")

@@ -1,6 +1,6 @@
 package dq.entities.operation.aggregate;
 
-import dq.entities.operation.OperationTest;
+import dq.entities.BaseSetup;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.junit.jupiter.api.DisplayName;
@@ -8,11 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-class RollUpGroupBySpecTest extends OperationTest {
+class RollUpGroupBySpecTest extends BaseSetup {
 
     @Test
     @DisplayName("isEmpty should return true when no columns are provided")
