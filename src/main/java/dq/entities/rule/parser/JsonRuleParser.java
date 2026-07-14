@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dq.entities.operation.Operation;
 import dq.entities.rule.OperandResolver;
 import dq.entities.rule.OperationRegistry;
-import dq.entities.rule.factory.OperationRegistryFactory;
+import dq.entities.rule.OperationRegistryFactory;
 
 import java.util.Objects;
 

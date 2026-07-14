@@ -1,6 +1,5 @@
-package dq.entities.rule.factory;
+package dq.entities.rule;
 
-import dq.entities.rule.OperationRegistry;
 import dq.enums.AggregateType;
 import dq.enums.CompositeType;
 import dq.enums.PredicateType;
