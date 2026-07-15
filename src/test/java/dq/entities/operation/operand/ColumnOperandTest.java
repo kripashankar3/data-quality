@@ -1,13 +1,13 @@
 package dq.entities.operation.operand;
 
-import dq.entities.operation.OperationTest;
+import dq.BaseSetup;
 import org.apache.spark.sql.Row;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ColumnOperandTest extends OperationTest {
+class ColumnOperandTest extends BaseSetup {
 
     @Test
     @DisplayName("expression should return the column name")

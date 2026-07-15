@@ -1,7 +1,7 @@
 package dq.entities.operation.predicate;
 
+import dq.BaseSetup;
 import dq.entities.operation.Operation;
-import dq.entities.operation.OperationTest;
 import dq.entities.operation.operand.ColumnOperand;
 import dq.entities.operation.operand.LiteralOperand;
 import org.junit.jupiter.api.DisplayName;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PredicateOperationsTest extends OperationTest {
+class PredicateOperationsTest extends BaseSetup {
 
     @Test
     @DisplayName("EqualOperation should match employees in Engineering department")

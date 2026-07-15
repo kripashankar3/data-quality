@@ -33,7 +33,9 @@ jobs:
         run: ./gradlew clean check jacocoTestReport
 
       - name: Publish Coverage Report in Pull Request
-        if: github.event_name == 'pull_request'
+        if: >
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.head.repo.full_name == github.repository
         uses: madrapps/jacoco-report@v1.7.1
         with:
           paths: build/reports/jacoco/test/jacocoTestReport.xml

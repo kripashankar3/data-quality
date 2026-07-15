@@ -5,12 +5,10 @@ dataset and generate evaluation result which would contain row wise result of ev
 
 # Sample Rule DSL
 
-### **_InProgress: A rule parser accepting this DSL and returns the operation instance._**
-
 Rule Name = active_employee_salary
 
-```{
-
+```
+{
 "operands": {
 "salary": {
 "type": "column",
@@ -34,11 +32,11 @@ Rule Name = active_employee_salary
 },
 "india_literal": {
 "type": "literal",
-"value": "India"
+"value": "IN"
 },
 "usa_literal": {
 "type": "literal",
-"value": "USA"
+"value": "US"
 }
 },
 
@@ -57,9 +55,9 @@ Rule Name = active_employee_salary
         "and": [
 
           {
-            "eq": {
-              "operand_left": "active",
-              "operand_right": "active_literal"
+            "equal": {
+              "left": "active",
+              "right": "active_literal"
             }
           },
 
@@ -67,16 +65,16 @@ Rule Name = active_employee_salary
             "or": [
 
               {
-                "eq": {
-                  "operand_left": "country",
-                  "operand_right": "india_literal"
+                "equal": {
+                  "left": "country",
+                  "right": "india_literal"
                 }
               },
 
               {
-                "eq": {
-                  "operand_left": "country",
-                  "operand_right": "usa_literal"
+                "equal": {
+                  "left": "country",
+                  "right": "usa_literal"
                 }
               }
 

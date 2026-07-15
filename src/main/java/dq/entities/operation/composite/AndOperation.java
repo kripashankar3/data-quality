@@ -3,16 +3,12 @@ package dq.entities.operation.composite;
 import dq.entities.operation.Operation;
 import org.apache.spark.sql.Column;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.StringJoiner;
 
-public class AndOperation implements Operation {
-
-    private final List<Operation> operations;
+public class AndOperation extends CompositeOperation {
 
     public AndOperation(Operation... operations) {
-        this.operations = Arrays.asList(operations);
+        super(operations);
     }
 
     @Override
@@ -29,7 +25,7 @@ public class AndOperation implements Operation {
 
     @Override
     public String expression() {
-        if (operations == null || operations.isEmpty()) {
+        if (operations.isEmpty()) {
             return ""; // Or return null/throw exception based on your architectural needs
         }
 

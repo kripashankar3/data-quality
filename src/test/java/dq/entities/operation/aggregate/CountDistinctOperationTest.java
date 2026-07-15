@@ -1,6 +1,6 @@
 package dq.entities.operation.aggregate;
 
-import dq.entities.operation.OperationTest;
+import dq.BaseSetup;
 import dq.entities.operation.operand.ColumnOperand;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CountDistinctOperationTest extends OperationTest {
+class CountDistinctOperationTest extends BaseSetup {
 
     @Test
     @DisplayName("should get distinct department count in employee dataset")

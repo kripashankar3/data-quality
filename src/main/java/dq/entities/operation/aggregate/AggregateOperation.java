@@ -1,12 +1,7 @@
 package dq.entities.operation.aggregate;
 
-import org.apache.spark.sql.Column;
+import dq.entities.operation.Operation;
 
-public interface AggregateOperation {
-
-    Column evaluate();
-
+public interface AggregateOperation extends Operation {
     String alias();
-
-    String expression();
 }
