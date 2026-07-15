@@ -1,6 +1,6 @@
 package dq.entities.operation.aggregate;
 
-import dq.entities.BaseSetup;
+import dq.BaseSetup;
 import dq.entities.operation.operand.ColumnOperand;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;

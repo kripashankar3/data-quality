@@ -1,4 +1,4 @@
-package dq.entities;
+package dq;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;

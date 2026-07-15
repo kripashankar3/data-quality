@@ -1,6 +1,6 @@
 package dq.entities.operation.aggregate;
 
-import dq.entities.BaseSetup;
+import dq.BaseSetup;
 import dq.entities.operation.operand.ColumnOperand;
 import dq.entities.operation.operand.LiteralOperand;
 import dq.entities.operation.predicate.GreaterThanOperation;

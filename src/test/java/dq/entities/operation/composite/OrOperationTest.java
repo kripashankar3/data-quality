@@ -1,6 +1,6 @@
 package dq.entities.operation.composite;
 
-import dq.entities.BaseSetup;
+import dq.BaseSetup;
 import dq.entities.operation.aggregate.AggregationContext;
 import dq.entities.operation.aggregate.NormalGroupBySpec;
 import dq.entities.operation.aggregate.SumOperation;

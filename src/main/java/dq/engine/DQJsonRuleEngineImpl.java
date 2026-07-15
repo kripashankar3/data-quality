@@ -1,6 +1,10 @@
 package dq.engine;
 
 import dq.entities.operation.Operation;
+import dq.entities.operation.aggregate.AggregateOperation;
+import dq.entities.operation.aggregate.AggregationContext;
+import dq.entities.operation.aggregate.BaseAggregateOperation;
+import dq.entities.operation.aggregate.GroupBySpec;
 import dq.entities.rule.parser.JsonRuleParser;
 import dq.model.Rule;
 import dq.utils.UtilityProvider;
@@ -15,7 +19,18 @@ public class DQJsonRuleEngineImpl implements DQRuleEngine {
         JsonRuleParser jsonRuleParser = new JsonRuleParser(UtilityProvider.OBJECT_MAPPER);
         try {
             Operation operation = jsonRuleParser.parse(ruleJson);
-            return inputDataset.agg(operation.evaluate());
+            if (operation instanceof BaseAggregateOperation) {
+                GroupBySpec groupBySpec = jsonRuleParser.getGroupBySpec(ruleJson);
+                AggregationContext aggregationContext = new AggregationContext(
+                        groupBySpec,
+                        List.of((AggregateOperation) operation)
+                );
+                return aggregationContext.execute(inputDataset);
+            } else if (operation != null) {
+                return inputDataset.filter(operation.evaluate());
+            } else {
+                throw new RuntimeException("Operation is null, unable to parse rule");
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

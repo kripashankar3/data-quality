@@ -1,6 +1,6 @@
 package dq.entities.operation.predicate;
 
-import dq.entities.BaseSetup;
+import dq.BaseSetup;
 import dq.entities.operation.Operation;
 import dq.entities.operation.operand.ColumnOperand;
 import dq.entities.operation.operand.LiteralOperand;

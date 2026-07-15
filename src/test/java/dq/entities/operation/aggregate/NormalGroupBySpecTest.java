@@ -1,6 +1,6 @@
 package dq.entities.operation.aggregate;
 
-import dq.entities.BaseSetup;
+import dq.BaseSetup;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.junit.jupiter.api.DisplayName;
