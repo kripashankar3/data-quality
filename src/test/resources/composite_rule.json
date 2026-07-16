@@ -1,0 +1,53 @@
+{
+  "operands": {
+    "salary": {
+      "type": "column",
+      "name": "salary"
+    },
+    "active": {
+      "type": "column",
+      "name": "active"
+    },
+    "country": {
+      "type": "column",
+      "name": "country"
+    },
+    "active_literal": {
+      "type": "literal",
+      "value": true
+    },
+    "country_literal": {
+      "type": "literal",
+      "value": [
+        "US",
+        "IN"
+      ]
+    },
+    "100000_literal": {
+      "type": "literal",
+      "value": 100000.0
+    }
+  },
+  "operation": {
+    "and": [
+      {
+        "equal": {
+          "left": "active",
+          "right": "active_literal"
+        }
+      },
+      {
+        "gt": {
+          "left": "salary",
+          "right": "100000_literal"
+        }
+      },
+      {
+        "in": {
+          "left": "country",
+          "right": "country_literal"
+        }
+      }
+    ]
+  }
+}

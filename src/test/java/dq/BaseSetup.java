@@ -21,7 +21,10 @@ public abstract class BaseSetup {
 
     protected SparkSession spark;
     protected Dataset<Row> employeeDataset;
-    protected String ruleJsonPath = "src/test/resources/rule.json";
+    protected String aggRuleJsonPath = "src/test/resources/aggregate_rule.json";
+    protected String compositeRuleJsonPath = "src/test/resources/composite_rule.json";
+    protected String predicateRuleJsonPath = "src/test/resources/predicate_rule.json";
+
     protected static final ObjectMapper OBJECT_MAPPER = JsonMapper.builder()
             .findAndAddModules()
             .build();

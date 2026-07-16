@@ -1,0 +1,22 @@
+{
+  "operands": {
+    "id": {
+      "type": "column",
+      "name": "id"
+    },
+    "id_literal": {
+      "type": "literal",
+      "value": [
+        14,
+        7,
+        10
+      ]
+    }
+  },
+  "operation": {
+    "in": {
+      "left": "id",
+      "right": "id_literal"
+    }
+  }
+}

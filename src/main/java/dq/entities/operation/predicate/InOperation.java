@@ -1,30 +1,34 @@
 package dq.entities.operation.predicate;
 
-import dq.entities.operation.Operation;
+import dq.entities.operation.operand.LiteralOperand;
 import dq.entities.operation.operand.Operand;
 import org.apache.spark.sql.Column;
 
-import java.util.Arrays;
+import java.util.List;
 
-public class InOperation implements Operation {
+public class InOperation extends PredicateOperation {
 
-    private final Operand left;
-    private final Object[] values;
-
-    public InOperation(Operand left, Object... values) {
-        this.left = left;
-        this.values = values;
+    public InOperation(Operand left, Operand right) {
+        super(left, right);
     }
 
     @Override
     public Column evaluate() {
-        return left.toColumn().isin(values);
+        if (right instanceof LiteralOperand literal) {
+            Object value = literal.value();
+
+            if (value instanceof List<?> list) {
+                return left.toColumn().isin(list.toArray());
+            }
+        }
+
+        throw new IllegalArgumentException("In operation requires a list literal");
     }
 
     @Override
     public String expression() {
-        return String.format("(%s IN '(%s)')",
+        return String.format("(%s IN (%s))",
                 left.expression(),
-                Arrays.toString(values));
+                right.expression());
     }
 }

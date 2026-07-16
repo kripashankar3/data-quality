@@ -24,4 +24,8 @@ public class LiteralOperand implements Operand {
         }
         return String.valueOf(value);
     }
+
+    public Object value() {
+        return value;
+    }
 }
