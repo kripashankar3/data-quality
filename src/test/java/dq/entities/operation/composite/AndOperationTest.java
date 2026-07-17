@@ -60,8 +60,7 @@ class AndOperationTest extends BaseSetup {
 
                         new InOperation(
                                 new ColumnOperand("country"),
-                                "US",
-                                "UK"
+                                new LiteralOperand(List.of("US", "UK"))
                         ),
 
                         new OrOperation(

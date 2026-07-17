@@ -7,6 +7,8 @@ import dq.entities.operation.operand.LiteralOperand;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PredicateOperationsTest extends BaseSetup {
@@ -82,7 +84,8 @@ class PredicateOperationsTest extends BaseSetup {
     void inOperationMatchesEmployeesFromUsOrUk() {
         Operation operation = new InOperation(
                 new ColumnOperand("country"),
-                "US", "UK");
+                new LiteralOperand(List.of("US", "UK"))
+        );
 
         assertEquals(6, countMatches(operation));
     }

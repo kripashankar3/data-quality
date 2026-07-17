@@ -1,8 +1,7 @@
 package dq.engine;
 
 import dq.BaseSetup;
-import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.Row;
+import dq.model.EvaluationResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class DQJsonRuleEngineImplTest extends BaseSetup {
     private DQJsonRuleEngineImpl dqJsonRuleEngine = new DQJsonRuleEngineImpl();
@@ -19,11 +18,22 @@ class DQJsonRuleEngineImplTest extends BaseSetup {
     @Test
     @DisplayName("Should evaluate given rule against input dataset")
     public void evaluate_given_rule_against_input_dataset() throws IOException {
-        String json = Files.readString(Path.of(ruleJsonPath));
-        Dataset<Row> result = dqJsonRuleEngine.runDQRules(employeeDataset, json);
-        assertEquals(3, result.count());
-        assertNull(result.filter("department == 'HR'").first().get(1));
-        assertEquals(340000.0, result.filter("department == 'Engineering'").first().get(1));
-        assertEquals(170000.0, result.filter("department == 'Finance'").first().get(1));
+        String json = Files.readString(Path.of(compositeRuleJsonPath));
+        EvaluationResult result = dqJsonRuleEngine.runDQRules(employeeDataset, json);
+        assertNotNull(result.failedEvaluation());
+        assertNotNull(result.successEvaluation());
+        assertEquals(3, result.successEvaluation().count());
+        assertEquals(7, result.failedEvaluation().count());
+    }
+
+    @Test
+    @DisplayName("Should evaluate predicate rule against input dataset")
+    public void evaluate_predicate_rule_against_input_dataset() throws IOException {
+        String json = Files.readString(Path.of(predicateRuleJsonPath));
+        EvaluationResult result = dqJsonRuleEngine.runDQRules(employeeDataset, json);
+        assertNotNull(result.failedEvaluation());
+        assertNotNull(result.successEvaluation());
+        assertEquals(2, result.successEvaluation().count());
+        assertEquals(8, result.failedEvaluation().count());
     }
 }
