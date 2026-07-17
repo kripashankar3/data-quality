@@ -42,10 +42,12 @@ public class DQRuleEngineImpl implements DQRuleEngine {
                 String generatedColName = "rule_%s_evaluation_result"
                         .formatted(UUID.randomUUID().toString().substring(0, 7)); // to be replaced with rule id
                 Dataset<Row> evaluatedDataset = inputDataset.withColumn(generatedColName, operation.evaluate());
-                Dataset<Row> successEvaluation = evaluatedDataset.filter(col(generatedColName).equalTo(true));
-                Dataset<Row> failedEvaluation = evaluatedDataset.filter(col(generatedColName).equalTo(false));
-                successEvaluation.drop(generatedColName);
-                failedEvaluation.drop(generatedColName);
+                Dataset<Row> successEvaluation = evaluatedDataset
+                        .filter(col(generatedColName).equalTo(true))
+                        .drop(generatedColName);
+                Dataset<Row> failedEvaluation = evaluatedDataset
+                        .filter(col(generatedColName).equalTo(false))
+                        .drop(generatedColName);
 
                 System.out.println("Success evaluation count: " + successEvaluation.count());
                 System.out.println("Failed evaluation count: " + failedEvaluation.count());
@@ -93,7 +95,7 @@ public class DQRuleEngineImpl implements DQRuleEngine {
             for (Rule rule : rules) {
                 String generatedColName = "rule_%s_evaluation_result".formatted(rule.getId());
                 finalResult = finalResult.and(col(generatedColName));
-                evaluatedDataset.drop(generatedColName);
+                evaluatedDataset = evaluatedDataset.drop(generatedColName);
             }
 
             Dataset<Row> successEvaluation = evaluatedDataset.filter(finalResult);
