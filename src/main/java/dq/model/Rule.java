@@ -4,7 +4,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 public class Rule {
-    private final String id;
+    private String id;
     private String name;
     private String description;
     private String body;
@@ -13,6 +13,9 @@ public class Rule {
     private Instant knowledgeBeginTime;
     private Instant updateTime;
     private Instant knowledgeEndTime;
+
+    public Rule() {
+    }
 
     public Rule(String name, String description, String body, String author) {
         this.id = UUID.randomUUID().toString();
@@ -24,6 +27,9 @@ public class Rule {
         this.knowledgeBeginTime = Instant.now();
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Instant getUpdateTime() {
         return updateTime;
